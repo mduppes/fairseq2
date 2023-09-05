@@ -187,6 +187,9 @@ class DefaultAssetDownloadManager(AssetDownloadManager):
     def _download_file(
         self, uri: str, pathname: Path, display_name: str, force: bool, progress: bool
     ) -> None:
+        _print_progress(
+            f"Downloading File mduppes: {display_name}, path: {pathname}, uri: {uri}"
+        )
         def raise_connection_error(cause: HTTPError) -> NoReturn:
             if cause.code == 404 or cause.code >= 500:
                 raise AssetDownloadError(
